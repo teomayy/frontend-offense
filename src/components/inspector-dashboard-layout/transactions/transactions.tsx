@@ -2,9 +2,15 @@ import { useQuery } from '@tanstack/react-query'
 
 import { IFinesResponse } from '@/types/fines.types'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { inspectorService } from '@/services/inspector.service'
 
 export function Transactions() {
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
 	const { data: transactions, isLoading } = useQuery({
 		queryKey: ['transactions'],
 		queryFn: () => inspectorService.getFines()
@@ -15,10 +21,10 @@ export function Transactions() {
 			<table className='w-full'>
 				<thead>
 					<tr>
-						<td className='p-3'>Имя</td>
-						<td className='p-3'>Статус</td>
-						<td className='p-3'>Дата и время</td>
-						<td className='p-3'>Сумма</td>
+						<td className='p-3'>{t.statistics.name}</td>
+						<td className='p-3'>{t.statistics.status}</td>
+						<td className='p-3'>{t.statistics.date}</td>
+						<td className='p-3'>{t.statistics.amount}</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,14 +49,14 @@ export function Transactions() {
 										className={`rounded-md p-2 text-xs ${transaction.status === 'pending' ? 'bg-[#f7cb7375]' : transaction.status === 'paid' ? 'bg-teal-500' : 'bg-red-500'} text-white`}
 									>
 										{transaction.status === 'pending'
-											? 'В ожидании'
+											? t.statistics.paidTransaction
 											: transaction.status === 'paid'
-												? 'Оплачен'
-												: 'Удален'}
+												? t.statistics.paidTransaction
+												: t.statistics.deletedTransaction}
 									</span>
 								</td>
 								<td className='p-3'>
-									{new Date(transaction.issuedAt).toLocaleString()}
+									{new Date(transaction.issuedAt).toLocaleString('RU')}
 								</td>
 								<td className='p-3'>
 									{transaction.amount.toLocaleString()} сум

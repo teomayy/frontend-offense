@@ -9,11 +9,16 @@ import { Search } from '@/components/ui/search/Search'
 
 import { IFinesResponse } from '@/types/fines.types'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { adminService } from '@/services/admin.service'
 import { inspectorService } from '@/services/inspector.service'
 
 export function Offense() {
 	const [searchTerm, setSearchTerm] = useState('')
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
 
 	const queryClient = useQueryClient()
 
@@ -43,28 +48,28 @@ export function Offense() {
 	return (
 		<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl mt-5'>
 			<div className='flex items-center justify-between'>
-				<Search placeholder='Поиск продукт...' />
+				<Search placeholder={t.offense.search} />
 				<Link href='offense/add-type'>
 					<button className='p-3 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white  border-none rounded-md cursor-pointer'>
 						{' '}
-						Добавить тип штрафа
+						{t.offense.addTypeOffense}
 					</button>
 				</Link>
 				<Link href='offense/add'>
 					<button className='p-3 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white border-none rounded-md cursor-pointer'>
 						{' '}
-						Добавить штраф
+						{t.offense.addOffense}
 					</button>
 				</Link>
 			</div>
 			<table className='w-full mt-5'>
 				<thead>
 					<tr>
-						<th className='p-3 text-left'>ФИО</th>
-						<th className='p-3 text-left'>Дата штрафа</th>
-						<th className='p-3 text-left'>Сумма</th>
-						<th className='p-3 text-left'>Статус</th>
-						<th className='p-3 text-left'>Действия</th>
+						<th className='p-3 text-left'>{t.offense.name}</th>
+						<th className='p-3 text-left'>{t.offense.date}</th>
+						<th className='p-3 text-left'>{t.offense.amount}</th>
+						<th className='p-3 text-left'>{t.offense.status}</th>
+						<th className='p-3 text-left'>{t.offense.action}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -97,10 +102,10 @@ export function Offense() {
 										}`}
 									>
 										{fine.status === 'pending'
-											? 'Ожидает оплаты'
+											? t.offense.pending
 											: fine.status === 'paid'
-												? 'Оплачен'
-												: 'Удалён'}
+												? t.statistics.paidTransaction
+												: t.statistics.deletedTransaction}
 									</span>
 								</td>
 								<td className='p-3'>
@@ -109,7 +114,7 @@ export function Offense() {
 										className='py-1 px-3 bg-[#BE3144] text-white rounded-md cursor-pointer'
 										disabled={deleteFineMutation.isPending}
 									>
-										Удалить
+										{t.offense.deleting}
 									</button>
 								</td>
 							</tr>

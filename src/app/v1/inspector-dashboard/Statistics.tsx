@@ -9,10 +9,16 @@ import { Chart } from '@/components/inspector-dashboard-layout/chart/chart'
 import { RightBar } from '@/components/inspector-dashboard-layout/rightbar/rightbar'
 import { Transactions } from '@/components/inspector-dashboard-layout/transactions/transactions'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { adminService } from '@/services/admin.service'
 import { inspectorService } from '@/services/inspector.service'
 
 export function Statistics() {
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
 	const { data: inspectorStats, isPending } = useQuery({
 		queryKey: ['adminStats'],
 		queryFn: inspectorService.getInspectorStats.bind(adminService)
@@ -22,21 +28,21 @@ export function Statistics() {
 		return [
 			{
 				icon: User,
-				label: 'Всего штрафов',
+				label: t.statistics.offense,
 				value: inspectorStats?.totalFines || 0
 			},
 			{
 				icon: CreditCard,
-				label: 'Оплаченные штрафы',
+				label: t.statistics['paid-offenses'],
 				value: inspectorStats?.paidFines || 0
 			},
 			{
 				icon: HandCoins,
-				label: 'Ожидают оплаты',
+				label: t.statistics.pending,
 				value: inspectorStats?.pendingFines || 0
 			}
 		]
-	}, [inspectorStats])
+	}, [inspectorStats, t])
 
 	if (isPending) {
 		return <p className='text-center text-gray-500'>Загрузка статистики...</p>

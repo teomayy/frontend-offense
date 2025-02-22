@@ -8,6 +8,10 @@ import {
 	YAxis
 } from 'recharts'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
+
 const data = [
 	{
 		name: 'Page A',
@@ -54,9 +58,14 @@ const data = [
 ]
 
 export function Chart() {
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
 	return (
 		<div className='mt-5 p-5 dark:bg-sidebar bg-[#A294F9] rounded-lg shadow-lg'>
-			<h2 className='font-extralight mb-5 text-textSoft'>Еженедельный обзор</h2>
+			<h2 className='font-extralight mb-5 text-textSoft'>
+				{t.statistics['weekly-review']}
+			</h2>
 			<ResponsiveContainer
 				width='100%'
 				height={300}

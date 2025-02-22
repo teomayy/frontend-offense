@@ -34,7 +34,7 @@ export function Header() {
 					<input
 						className='bg-transparent  border-transparent outline-none'
 						type='text'
-						placeholder='Поиск...'
+						placeholder={t.header.search}
 					/>
 				</div>
 				<div className='flex gap-5 items-center'>

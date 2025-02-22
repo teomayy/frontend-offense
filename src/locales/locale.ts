@@ -26,7 +26,12 @@ export const translation = {
 			date: 'Дата штрафа',
 			amount: 'Сумма',
 			status: 'Статус',
-			action: 'Действия'
+			action: 'Действия',
+			search: 'Поиск штрафа...',
+			addTypeOffense: 'Добавить тип штрафа',
+			addOffense: 'Добавить штраф',
+			pending: 'Ожидает оплаты',
+			deleting: 'Удалить'
 		},
 		'add-offense': {
 			name: 'ФИО',
@@ -36,15 +41,21 @@ export const translation = {
 			'add-offense': 'Добавить штраф'
 		},
 		statistics: {
-			offenses: 'Всего штрафа',
+			offense: 'Всего штрафа',
 			'paid-offenses': 'Оплаченные штрафы',
 			pending: 'Ожидают оплаты',
 			'last-transaction': 'Последние транзакции',
 			name: 'ФИО',
+			pendingTransaction: 'В ожидании',
+			paidTransaction: 'Оплачен',
+			deletedTransaction: 'Удален',
 			status: 'Статус',
 			date: 'Дата и время',
 			amount: 'Сумма',
 			'weekly-review': 'Еженедельный обзор'
+		},
+		header: {
+			search: 'Поиск...'
 		}
 	},
 	[Locales.UZ]: {
@@ -69,7 +80,12 @@ export const translation = {
 			date: 'Jarima sanasi',
 			amount: 'Miqdori',
 			status: 'Holat',
-			action: 'Amallar'
+			action: 'Amallar',
+			search: 'Jarima qidirish...',
+			addTypeOffense: "Jarima turini qo'shish",
+			addOffense: "Jarima qo'shish",
+			pending: "To'lov kutulmoqda",
+			deleting: "O'chirish"
 		},
 		'add-offense': {
 			name: 'FIO',
@@ -84,9 +100,16 @@ export const translation = {
 			pending: "To'lov kutulmoqda",
 			'last-transaction': "Oxirgi to'lovlar",
 			name: 'FIO',
+			pendingTransaction: 'Kutulmoqda',
+			paidTransaction: "To'langan",
+			deletedTransaction: 'Uchirilgan',
 			status: 'Holat',
 			amount: 'Miqdori',
+			date: 'Jarima sanasi',
 			'weekly-review': 'Haftalik sharh'
+		},
+		header: {
+			search: 'Qidirish...'
 		}
 	}
 }
