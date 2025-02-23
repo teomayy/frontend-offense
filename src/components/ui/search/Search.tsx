@@ -1,13 +1,21 @@
 import { SearchIcon } from 'lucide-react'
 import { ChangeEvent, useState } from 'react'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
+
 interface SearchProps {
 	placeholder?: string
 	onSearch?: (value: string) => void
 }
 
-export function Search({ placeholder = 'Поиск...', onSearch }: SearchProps) {
+export function Search({ onSearch }: SearchProps) {
 	const [query, setQuery] = useState('')
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
+	const placeholder = t.TableOffenseTypes.search
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value

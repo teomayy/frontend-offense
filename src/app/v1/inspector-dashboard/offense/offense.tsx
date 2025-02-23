@@ -35,7 +35,7 @@ export function Offense() {
 	const deleteFineMutation = useMutation({
 		mutationFn: (id: string) => adminService.deleteFine(id),
 		onSuccess() {
-			toast.success('Штраф удалён!')
+			toast.success(t.offense.deleted)
 			refetch()
 			queryClient.invalidateQueries({ queryKey: ['fines'] })
 		}
@@ -89,7 +89,9 @@ export function Offense() {
 								className='border-t border-gray-700 dark:hover:bg-gray-700 hover:bg-[#877bd3] rounded-md'
 							>
 								<td className='p-3'>{fine.name}</td>
-								<td>{new Date(fine.issuedAt).toLocaleDateString('ru-RU')}</td>
+								<td className='p-3'>
+									{new Date(fine.issuedAt).toLocaleDateString('ru-RU')}
+								</td>
 								<td className='p-3'>{fine.amount} сум</td>
 								<td className='p-3'>
 									<span

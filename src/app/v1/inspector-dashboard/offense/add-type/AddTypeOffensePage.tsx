@@ -10,10 +10,15 @@ import { FineTypesTable } from '@/components/ui/TableFineTypes'
 
 import { IFineType } from '@/types/fines.types'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { inspectorService } from '@/services/inspector.service'
 
 export function AddFineTypePage() {
 	const router = useRouter()
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
 
 	const {
 		register,
@@ -51,7 +56,7 @@ export function AddFineTypePage() {
 						{...register('name', { required: 'Название обязательно' })}
 						className='p-6 dark:bg-bg bg-[#CDC1FF] dark:text-white border-none outline-none rounded-md mb-4 w-full'
 						type='text'
-						placeholder='Название штрафа'
+						placeholder={t.addTypeOffense.name}
 					/>
 					{errors.name && (
 						<span className='text-[#BE3144]'>{errors.name.message}</span>
@@ -66,7 +71,7 @@ export function AddFineTypePage() {
 							}`}
 							onClick={() => handleChangeType('fixed')}
 						>
-							Фиксированная сумма
+							{t.addTypeOffense.fixedAmount}
 						</button>
 						<button
 							type='button'
@@ -77,7 +82,7 @@ export function AddFineTypePage() {
 							}`}
 							onClick={() => handleChangeType('percentage')}
 						>
-							Процент от оклада
+							{t.addTypeOffense.percentage}
 						</button>
 					</div>
 					{fineType === 'fixed' ? (
@@ -85,14 +90,14 @@ export function AddFineTypePage() {
 							{...register('fixedAmount', { valueAsNumber: true })}
 							className='p-6 dark:bg-bg bg-[#CDC1FF] dark:text-white border-none outline-none rounded-md mb-4 w-full'
 							type='number'
-							placeholder='Фиксированная сумма штрафа'
+							placeholder={t.addTypeOffense.fixedAmountOffense}
 						/>
 					) : (
 						<input
 							{...register('percentage', { valueAsNumber: true })}
 							className='p-6 dark:bg-bg bg-[#CDC1FF] dark:text-white border-none outline-none rounded-md mb-4 w-full'
 							type='number'
-							placeholder='Процент от оклада'
+							placeholder={t.addTypeOffense.percentage}
 						/>
 					)}
 
@@ -102,8 +107,8 @@ export function AddFineTypePage() {
 						disabled={createFineTypeMutation.isPending}
 					>
 						{createFineTypeMutation.isPending
-							? 'Добавление...'
-							: 'Добавить тип штрафа'}
+							? t['add-offense'].pending
+							: t.addTypeOffense.button}
 					</button>
 				</form>
 			</div>

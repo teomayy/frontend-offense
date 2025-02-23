@@ -8,9 +8,15 @@ import { toast } from 'sonner'
 
 import { ICreateFine, IFineType } from '@/types/fines.types'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { inspectorService } from '@/services/inspector.service'
 
 export function AddOffensePage() {
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
 	const router = useRouter()
 	const {
 		register,
@@ -49,12 +55,12 @@ export function AddOffensePage() {
 	const createFineMutation = useMutation({
 		mutationFn: (data: ICreateFine) => inspectorService.createFine(data),
 		onSuccess() {
-			toast.success('Штраф успешно добавлен!')
+			toast.success(t['add-offense'].success)
 			router.push('/v1/inspector-dashboard/offense')
 		},
 		onError(error) {
 			console.error('Ошибка при добавлении штрафа:', error)
-			toast.error('Не удалось добавить штраф')
+			toast.error(t['add-offense'].error)
 		}
 	})
 
@@ -89,31 +95,35 @@ export function AddOffensePage() {
 					createFineMutation.mutate(formattedData)
 				})}
 			>
-				<input
-					{...register('name', { required: 'ФИО обязательно' })}
-					className='p-6 bg-bg text-white border-solid border border-[#2e374a] rounded-md mb-8 w-full'
-					type='text'
-					placeholder='ФИО'
-				/>
 				{errors.name && (
 					<span className='text-red-500'>{errors.name.message}</span>
 				)}
-
 				<input
-					{...register('phone', { required: 'Телефон обязательно' })}
-					className='p-6 bg-bg text-white border border-[#2e374a] rounded-md mb-4 w-full'
-					type='tel'
-					placeholder='Номер телефона'
+					{...register('name', { required: t['add-offense'].nameRequired })}
+					className='p-6 bg-bg text-white border-solid border border-[#2e374a] rounded-md mb-8 w-full'
+					type='text'
+					placeholder={t['add-offense'].name}
 				/>
+
 				{errors.phone && (
 					<span className='text-red-500'>{errors.phone.message}</span>
 				)}
-
+				<input
+					{...register('phone', { required: t['add-offense'].phoneRequired })}
+					className='p-6 bg-bg text-white border border-[#2e374a] rounded-md mb-4 w-full'
+					type='tel'
+					placeholder={t['add-offense'].phone}
+				/>
+				{errors.fineTypeId && (
+					<span className='text-red-500'>{errors.fineTypeId.message}</span>
+				)}
 				<select
-					{...register('fineTypeId', { required: 'Выберите штрафа' })}
+					{...register('fineTypeId', {
+						required: t['add-offense'].offenseRequired
+					})}
 					className='p-6 bg-bg text-white border border-[#2e374a] rounded-md mb-4 w-full'
 				>
-					<option value=''>Выберите штрафа</option>
+					<option value=''>{t['add-offense']['choose-offense']}</option>
 					{isLoading ? (
 						<option>Загрузка...</option>
 					) : (
@@ -127,14 +137,12 @@ export function AddOffensePage() {
 						))
 					)}
 				</select>
-				{errors.fineTypeId && (
-					<span className='text-red-500'>{errors.fineTypeId.message}</span>
-				)}
+
 				<input
 					{...register('baseSalary')}
 					className='p-6 bg-bg text-white border border-[#2e374a] rounded-md mb-4 w-full'
 					type='number'
-					placeholder='Базовый оклад (если штраф в %)'
+					placeholder={t['add-offense'].baseSalary}
 					onChange={handleBaseSalaryChange}
 				/>
 
@@ -151,7 +159,9 @@ export function AddOffensePage() {
 					type='submit'
 					disabled={createFineMutation.isPending}
 				>
-					{createFineMutation.isPending ? 'Добавление...' : 'Добавить штраф'}
+					{createFineMutation.isPending
+						? t['add-offense'].pending
+						: t['add-offense']['add-offense']}
 				</button>
 			</form>
 		</div>

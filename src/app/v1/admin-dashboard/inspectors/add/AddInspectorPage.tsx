@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { adminService } from '@/services/admin.service'
 
 interface IInspectorForm {
@@ -16,6 +19,9 @@ interface IInspectorForm {
 export function AddInspectorPage() {
 	const queryClient = useQueryClient()
 	const router = useRouter()
+
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
 
 	const {
 		register,
@@ -52,7 +58,7 @@ export function AddInspectorPage() {
 				<input
 					className='p-6 dark:bg-bg bg-[#CDC1FF] dark:text-white border-none outline-none rounded-md mb-8 w-full'
 					type='text'
-					placeholder='ФИО'
+					placeholder={t.inspectors.name}
 					{...register('name', { required: 'Введите ФИО' })}
 				/>
 				{errors.name && (

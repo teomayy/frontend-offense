@@ -17,7 +17,9 @@ export function Transactions() {
 	})
 	return (
 		<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl'>
-			<h2 className='font-extralight text-textSoft'>Последние транзакции</h2>
+			<h2 className='font-extralight text-textSoft'>
+				{t.statistics['last-transaction']}
+			</h2>
 			<table className='w-full'>
 				<thead>
 					<tr>
@@ -34,7 +36,7 @@ export function Transactions() {
 								colSpan={4}
 								className='text-center p-3'
 							>
-								Загрузка...
+								{t.TableOffenseTypes.loading}
 							</td>
 						</tr>
 					) : transactions?.length ? (
@@ -69,7 +71,7 @@ export function Transactions() {
 								colSpan={4}
 								className='text-center p-3'
 							>
-								Нет активных штрафов
+								{t.statistics.noActive}
 							</td>
 						</tr>
 					)}

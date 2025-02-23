@@ -20,7 +20,7 @@ export function Statistics() {
 	const t = translation[locale]
 
 	const { data: inspectorStats, isPending } = useQuery({
-		queryKey: ['adminStats'],
+		queryKey: ['inspectorStats'],
 		queryFn: inspectorService.getInspectorStats.bind(adminService)
 	})
 

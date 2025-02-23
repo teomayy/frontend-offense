@@ -4,12 +4,17 @@ import { toast } from 'sonner'
 
 import { IFineType } from '@/types/fines.types'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
 import { Search } from './search/Search'
+import { translation } from '@/locales/locale'
 import { inspectorService } from '@/services/inspector.service'
 
 export function FineTypesTable() {
 	const [searchTerm, setSearchTerm] = useState('')
 	const queryClient = useQueryClient()
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
 
 	const { data: fineTypes, isLoading } = useQuery({
 		queryKey: ['fineTypes'],
@@ -47,10 +52,10 @@ export function FineTypesTable() {
 			<table className='w-full border-collapse'>
 				<thead>
 					<tr className='border-b border-gray-700'>
-						<th className='p-3 text-left'>Название</th>
-						<th className='p-3 text-left'>Процент</th>
-						<th className='p-3 text-left'>Фиксированная сумма</th>
-						<th className='p-3 text-left'>Действия</th>
+						<th className='p-3 text-left'>{t.TableOffenseTypes.name}</th>
+						<th className='p-3 text-left'>{t.TableOffenseTypes.percentage}</th>
+						<th className='p-3 text-left'>{t.TableOffenseTypes.fixedAmount}</th>
+						<th className='p-3 text-left'>{t.TableOffenseTypes.action}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -60,7 +65,7 @@ export function FineTypesTable() {
 								colSpan={4}
 								className='text-center p-3'
 							>
-								Загрузка...
+								{t.TableOffenseTypes.loading}
 							</td>
 						</tr>
 					) : filteredFineTypes?.length ? (
@@ -86,7 +91,7 @@ export function FineTypesTable() {
 									>
 										{deleteFineTypeMutation.isPending
 											? 'Удаление...'
-											: 'Удалить'}
+											: t.TableOffenseTypes.delete}
 									</button>
 								</td>
 							</tr>

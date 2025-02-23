@@ -1,19 +1,28 @@
 'use client'
 
-import { Bell, Globe, MessageSquareMore, Search } from 'lucide-react'
+import { Bell, MessageSquareMore, Search } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 import { Heading } from '@/components/ui/Heading'
 import DarkModeSelector from '@/components/ui/selectors/DarkModeSelector'
+import { LanguageSelector } from '@/components/ui/selectors/LanguageSelector'
+
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 
 export function Header() {
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
 	const pathname = usePathname()
 
 	const getTitle = () => {
-		if (pathname.includes('/admin-dashboard/inspectors')) return 'ИНСПЕКТОРЫ'
-		if (pathname.includes('/admin-dashboard/fines')) return 'ШТРАФЫ'
-		if (pathname.includes('/admin-dashboard/settings')) return 'НАСТРОЙКИ'
-		return 'СТАТИСТИКА' // По умолчанию
+		if (pathname.includes('/admin-dashboard/inspectors'))
+			return t.statistics.inspectors
+		if (pathname.includes('/admin-dashboard/fines')) return t.menu.offenses
+		if (pathname.includes('/admin-dashboard/settings')) return t.menu.settings
+		return t.menu.stat // По умолчанию
 	}
 
 	return (
@@ -25,13 +34,13 @@ export function Header() {
 					<input
 						className='bg-transparent  border-transparent outline-none'
 						type='text'
-						placeholder='Поиск...'
+						placeholder={t.header.search}
 					/>
 				</div>
-				<div className='flex gap-5'>
+				<div className='flex gap-5 items-center'>
 					<MessageSquareMore size={20} />
 					<Bell size={20} />
-					<Globe size={20} />
+					<LanguageSelector />
 					<DarkModeSelector />
 				</div>
 			</div>

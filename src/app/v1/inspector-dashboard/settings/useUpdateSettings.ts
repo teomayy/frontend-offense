@@ -3,21 +3,27 @@ import { toast } from 'sonner'
 
 import { TypeUserForm } from '@/types/auth.types'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { inspectorService } from '@/services/inspector.service'
 
 export function useUpdateSettings() {
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
 	const queryClient = useQueryClient()
 
 	const { mutate, isPending } = useMutation({
 		mutationKey: ['updateProfile'],
 		mutationFn: (data: TypeUserForm) => inspectorService.update(data),
 		onSuccess() {
-			toast.success('Профиль успешно обновлен!')
+			toast.success(t.updateProfile.updated)
 			queryClient.invalidateQueries({ queryKey: ['profile'] })
 		},
 		onError(error) {
 			console.error('Ошибка обновления инспектора:', error)
-			toast.error('Не удалось обновить данные!')
+			toast.error(t.updateProfile.error)
 		}
 	})
 

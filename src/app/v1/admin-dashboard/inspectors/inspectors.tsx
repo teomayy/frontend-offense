@@ -8,9 +8,15 @@ import { toast } from 'sonner'
 import { Pagination } from '@/components/ui/pagination/Pagination'
 import { Search } from '@/components/ui/search/Search'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { adminService } from '@/services/admin.service'
 
 export default function InspectorPage() {
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
 	const queryClient = useQueryClient()
 	const { push } = useRouter()
 
@@ -42,16 +48,16 @@ export default function InspectorPage() {
 				<Link href='inspectors/add'>
 					<button className='p-3 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white  border-none rounded-md cursor-pointer'>
 						{' '}
-						Добавить инспектора
+						{t.inspectors.button}
 					</button>
 				</Link>
 			</div>
 			<table className='w-full'>
 				<thead>
 					<tr>
-						<td className='p-3 w-[40%]'>Имя</td>
-						<td className='p-3 w-[40%]'>Логин</td>
-						<td className='p-3'>Действия</td>
+						<td className='p-3 w-[40%]'>{t.inspectors.name}</td>
+						<td className='p-3 w-[40%]'>{t.inspectors.login}</td>
+						<td className='p-3'>{t.inspectors.action}</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,7 +67,7 @@ export default function InspectorPage() {
 								colSpan={3}
 								className='text-center p-3'
 							>
-								Загрузка...
+								{t.TableOffenseTypes.loading}
 							</td>
 						</tr>
 					) : inspectors?.length ? (
@@ -78,14 +84,14 @@ export default function InspectorPage() {
 											onClick={() => handleEdit(inspector.id)}
 											className='py-1 px-3 rounded-md border-none cursor-pointer bg-[#5D8736] text-white'
 										>
-											Редактировать
+											{t.inspectors.edit}
 										</button>
 
 										<button
 											onClick={() => deleteMutation.mutate(inspector.id)}
 											className='py-1 px-3 rounded-md border-none cursor-pointer bg-[#BE3144] text-white'
 										>
-											Удалить
+											{t.inspectors.delete}
 										</button>
 									</div>
 								</td>
@@ -97,7 +103,7 @@ export default function InspectorPage() {
 								colSpan={3}
 								className='text-center p-3'
 							>
-								Нет инспекторов
+								{t.inspectors.noInspectors}
 							</td>
 						</tr>
 					)}
