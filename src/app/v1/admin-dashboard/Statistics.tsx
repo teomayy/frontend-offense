@@ -48,7 +48,7 @@ export function Statistics() {
 			{
 				icon: HandCoins,
 				label: t.statistics.archivedFines,
-				value: stats?.archivedReportsCount || 0
+				value: stats?.pendingFines || 0
 			}
 		]
 	}, [stats, t])
