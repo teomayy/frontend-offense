@@ -7,9 +7,15 @@ import { toast } from 'sonner'
 
 import { IUser } from '@/types/auth.types'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { adminService } from '@/services/admin.service'
 
 export function EditInspectorPage() {
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
 	const { id } = useParams() as { id: string }
 	const router = useRouter()
 
@@ -40,17 +46,17 @@ export function EditInspectorPage() {
 		mutationFn: ({ id, ...updatedInspector }: IUser) =>
 			adminService.updateInspector(id, updatedInspector),
 		onSuccess() {
-			toast.success('Данные инспектора обновлены!')
+			toast.success(t.editInspector.success)
 			router.push('/v1/admin-dashboard/inspectors')
 		},
 		onError(error) {
 			console.error('Ошибка обновления инспектора:', error)
-			toast.error('Не удалось обновить данные!')
+			toast.error(t.editInspector.error)
 		}
 	})
 
-	if (isLoading) return <p>Загрузка...</p>
-	if (!inspector) return <p>Инспектор не найден!</p>
+	if (isLoading) return <p>{t.TableOffenseTypes.loading}</p>
+	if (!inspector) return <p>{t.editInspector.loadingError}</p>
 
 	const onSubmit: SubmitHandler<IUser> = data => {
 		if (!data.id) {
@@ -78,26 +84,26 @@ export function EditInspectorPage() {
 						type='hidden'
 						{...register('id')}
 					/>
-					<label className='text-[12px]'>ФИО</label>
+					<label className='text-[12px]'>{t.inspectors.name}</label>
 					<input
 						className='p-3 border-none outline-none  rounded-md dark:bg-bg bg-[#CDC1FF] my-3'
 						type='text'
 						{...register('name', { required: 'Введите ФИО' })}
 						required
 					/>
-					<label className='text-[12px]'>Логин</label>
+					<label className='text-[12px]'>{t.inspectors.login}</label>
 					<input
 						className='p-3 border-none outline-none  rounded-md dark:bg-bg bg-[#CDC1FF] my-3'
 						type='text'
 						{...register('login', { required: 'Введите логин' })}
 						required
 					/>
-					<label className='text-[12px]'>Пароль</label>
+					<label className='text-[12px]'>{t.inspectors.password}</label>
 					<input
 						className='p-3 border-none outline-none  rounded-md dark:bg-bg bg-[#CDC1FF] my-3'
 						type='password'
 						{...register('password')}
-						placeholder='Оставьте пустым, если не хотите менять'
+						placeholder={t.settings.inputPassword}
 					/>
 					<button
 						className='w-full p-5 bg-teal-700 text-white border-none rounded-md cursor-pointer mt-5'
@@ -105,8 +111,8 @@ export function EditInspectorPage() {
 						disabled={updateInspectorMutation.isPending}
 					>
 						{updateInspectorMutation.isPending || isSubmitting
-							? 'Обновление..'
-							: 'Обновить'}
+							? t.editInspector.updating
+							: t.editInspector.update}
 					</button>
 				</form>
 			</div>

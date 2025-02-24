@@ -19,7 +19,9 @@ export const translation = {
 			login: 'Логин',
 			logout: 'Выйти',
 			'log-in': 'Войти',
-			password: 'Паролль'
+			password: 'Пароль',
+			success: 'Успешный вход!',
+			error: 'Неверный логин или пароль'
 		},
 		offense: {
 			name: 'ФИО',
@@ -31,7 +33,9 @@ export const translation = {
 			addTypeOffense: 'Добавить тип штрафа',
 			addOffense: 'Добавить штраф',
 			pending: 'Ожидает оплаты',
+			paid: 'Оплачен',
 			deleting: 'Удалить',
+			pendingDeleting: 'Удаление...',
 			deleted: 'Штраф удалён!'
 		},
 		'add-offense': {
@@ -114,7 +118,20 @@ export const translation = {
 			noInspectors: 'Нет инспекторов',
 			previous: 'Назад',
 			next: 'Далее',
-			addButton: 'Добавить'
+			addButton: 'Добавить',
+			password: 'Пароль',
+			pending: 'Добавление...',
+			loginRequired: 'Введите логин',
+			passwordRequired: 'Введите пароль',
+			success: 'Инспектор добавлен успешно',
+			error: 'Не удалось добавить инспектора'
+		},
+		editInspector: {
+			update: 'Обновить',
+			updating: 'Обновление...',
+			success: 'Данные инспектора обновлены!',
+			error: 'Не удалось обновить данные!',
+			loadingError: 'Инспектор не найден!'
 		}
 	},
 	[Locales.UZ]: {
@@ -132,7 +149,9 @@ export const translation = {
 			login: 'Login',
 			logout: 'Chiqish',
 			'log-in': 'Kirish',
-			password: 'Parol'
+			password: 'Parol',
+			success: 'Muvaffaqiyatli kirish!',
+			error: "Login yoki parol nato'g'ri"
 		},
 		offense: {
 			name: 'FIO',
@@ -144,6 +163,8 @@ export const translation = {
 			addTypeOffense: "Jarima turini qo'shish",
 			addOffense: "Jarima qo'shish",
 			pending: "To'lov kutulmoqda",
+			paid: "To'landi",
+			pendingDeleting: "O'chirilmoqda..",
 			deleting: "O'chirish",
 			deleted: "Jarima o'chirildi!"
 		},
@@ -226,7 +247,20 @@ export const translation = {
 			noInspectors: "Inspektorlar yo'q",
 			previous: 'Ortga',
 			next: 'Keyingisi',
-			addButton: "Qo'shish"
+			addButton: "Qo'shish",
+			password: 'Parol',
+			pending: "Qo'shilmoqda...",
+			loginRequired: 'Login kiritish shart',
+			passwordRequired: 'Parol kiritish shart',
+			success: "Inspektor muvaffaqiyatli qo'shildi",
+			error: 'Inspektor qo‘shib bo‘lmadi'
+		},
+		editInspector: {
+			update: 'Yangilash',
+			updating: 'Yangilanmoqda...',
+			success: "Inspektor ma'lumotlari yangilandi!",
+			error: 'Maʼlumotlarni yangilab boʻlmadi!',
+			loadingError: 'Inspektor topilmadi!'
 		}
 	}
 }

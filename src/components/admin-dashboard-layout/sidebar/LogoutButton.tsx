@@ -4,9 +4,15 @@ import { useMutation } from '@tanstack/react-query'
 import { LogOut } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { authService } from '@/services/auth.service'
 
 export function LogoutButton() {
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
 	const router = useRouter()
 
 	const { mutate } = useMutation({
@@ -21,7 +27,7 @@ export function LogoutButton() {
 			onClick={() => mutate()}
 		>
 			<LogOut size={20} />
-			Выйти
+			{t.auth.logout}
 		</button>
 	)
 }

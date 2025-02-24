@@ -8,9 +8,15 @@ import { Search } from '@/components/ui/search/Search'
 
 import { IFinesResponse } from '@/types/fines.types'
 
+import { useLanguageStore } from '@/store/useLanguageStore'
+
+import { translation } from '@/locales/locale'
 import { adminService } from '@/services/admin.service'
 
 export function Offense() {
+	const { locale } = useLanguageStore()
+	const t = translation[locale]
+
 	const [searchTerm, setSearchTerm] = useState('')
 
 	const queryClient = useQueryClient()
@@ -46,15 +52,15 @@ export function Offense() {
 	return (
 		<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl mt-5'>
 			<div className='flex items-center justify-between'>
-				<Search placeholder='Поиск продукт...' />
+				<Search placeholder={t.offense.search} />
 			</div>
 			<table className='w-full mt-5'>
 				<thead>
 					<tr>
-						<th className='p-3'>Называния</th>
-						<th className='p-3'>Сумма</th>
-						<th className='p-3'>Статус</th>
-						<th className='p-3'>Действия</th>
+						<th className='p-3 text-left'>{t.offense.name}</th>
+						<th className='p-3 text-left'>{t.offense.amount}</th>
+						<th className='p-3 text-left'>{t.offense.status}</th>
+						<th className='p-3 text-left'>{t.offense.action}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -86,10 +92,10 @@ export function Offense() {
 										}`}
 									>
 										{fine.status === 'pending'
-											? 'Ожидает оплаты'
+											? t.offense.pending
 											: fine.status === 'paid'
-												? 'Оплачен'
-												: 'Удалён'}
+												? t.offense.paid
+												: t.offense.deleted}
 									</span>
 								</td>
 								<td className='p-3'>
@@ -98,7 +104,9 @@ export function Offense() {
 										className='py-1 px-3 bg-red-500 text-white rounded-md cursor-pointer'
 										disabled={deleteFineMutation.isPending}
 									>
-										{deleteFineMutation.isPending ? 'Удаление...' : 'Удалить'}
+										{deleteFineMutation.isPending
+											? t.offense.pendingDeleting
+											: t.offense.deleting}
 									</button>
 								</td>
 							</tr>

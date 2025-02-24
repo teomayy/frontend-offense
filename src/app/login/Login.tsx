@@ -13,8 +13,6 @@ import { DASHBOARD_PAGES } from '@/config/pages-url.config'
 
 import { useLanguageStore } from '@/store/useLanguageStore'
 
-import { errorCatch } from '@/api/error'
-
 import { translation } from '@/locales/locale'
 import { authService } from '@/services/auth.service'
 
@@ -36,12 +34,12 @@ export function Login() {
 		mutationKey: ['login'],
 		mutationFn: async (data: IAuthForm) => authService.login(data),
 		onSuccess() {
-			toast.success('Успешный вход!')
+			toast.success(t.auth.success)
 
 			router.push(DASHBOARD_PAGES.HOME)
 		},
 		onError(error) {
-			toast.error(errorCatch(error))
+			toast.error(t.auth.error)
 		}
 	})
 
@@ -61,7 +59,7 @@ export function Login() {
 				<div className='w-full'>
 					<input
 						type='text'
-						{...register('login', { required: 'Введите логин' })}
+						{...register('login', { required: t.inspectors.loginRequired })}
 						placeholder={t.auth['login']}
 						className='w-full p-4 border border-gray-500 rounded-md dark:bg-bg bg-[#CDC1FF] dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500'
 					/>
@@ -73,7 +71,9 @@ export function Login() {
 				<div className='w-full'>
 					<input
 						type='password'
-						{...register('password', { required: 'Введите пароль' })}
+						{...register('password', {
+							required: t.inspectors.passwordRequired
+						})}
 						placeholder={t.auth.password}
 						className='w-full p-4 border border-gray-500 rounded-md dark:bg-bg bg-[#CDC1FF] dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500'
 					/>
