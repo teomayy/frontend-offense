@@ -51,7 +51,7 @@ export function Transactions() {
 										className={`rounded-md p-2 text-xs ${transaction.status === 'pending' ? 'bg-[#f7cb7375]' : transaction.status === 'paid' ? 'bg-teal-500' : 'bg-red-500'} text-white`}
 									>
 										{transaction.status === 'pending'
-											? t.statistics.paidTransaction
+											? t.statistics.pending
 											: transaction.status === 'paid'
 												? t.statistics.paidTransaction
 												: t.statistics.deletedTransaction}

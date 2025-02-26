@@ -21,7 +21,9 @@ export const translation = {
 			'log-in': 'Войти',
 			password: 'Пароль',
 			success: 'Успешный вход!',
-			error: 'Неверный логин или пароль'
+			error: 'Неверный логин или пароль',
+			logoutModal: 'Вы уверены, что хотите выйти?',
+			cancel: 'Отмена'
 		},
 		offense: {
 			name: 'ФИО',
@@ -36,7 +38,10 @@ export const translation = {
 			paid: 'Оплачен',
 			deleting: 'Удалить',
 			pendingDeleting: 'Удаление...',
-			deleted: 'Штраф удалён!'
+			deleted: 'Штраф удалён!',
+			error: 'Не удалось удалить штраф',
+			deleteMessage: 'Вы уверены, что хотите удалить?',
+			cancel: 'Отмена'
 		},
 		'add-offense': {
 			name: 'ФИО',
@@ -62,10 +67,10 @@ export const translation = {
 		statistics: {
 			inspectors: 'Инспекторы',
 			activeFines: 'Активный штрафы',
-			archivedFines: 'Архивированный штрафы',
+			archivedFines: 'Оплата ожидается',
 			offense: 'Всего штрафа',
 			'paid-offenses': 'Оплаченные штрафы',
-			pending: 'Ожидают оплаты',
+			pending: 'Ожидает оплаты',
 			'last-transaction': 'Последние транзакции',
 			name: 'ФИО',
 			pendingTransaction: 'В ожидании',
@@ -151,7 +156,9 @@ export const translation = {
 			'log-in': 'Kirish',
 			password: 'Parol',
 			success: 'Muvaffaqiyatli kirish!',
-			error: "Login yoki parol nato'g'ri"
+			error: "Login yoki parol nato'g'ri",
+			logoutModal: 'Chiqishga ishonchingiz komilmi?',
+			cancel: 'Bekor qilish'
 		},
 		offense: {
 			name: 'FIO',
@@ -166,7 +173,10 @@ export const translation = {
 			paid: "To'landi",
 			pendingDeleting: "O'chirilmoqda..",
 			deleting: "O'chirish",
-			deleted: "Jarima o'chirildi!"
+			deleted: "Jarima o'chirildi!",
+			error: "Jarimani o'chirilmadi!",
+			deleteMessage: 'Haqiqatan ham oʻchirib tashlamoqchimisiz?',
+			cancel: 'Chiqish'
 		},
 		'add-offense': {
 			name: 'FIO',

@@ -6,6 +6,8 @@ export enum EnumTokens {
 }
 
 export const getAccessToken = () => {
+	if (typeof window === 'undefined') return null
+
 	const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN)
 	console.log('Полученный токен:', accessToken)
 	return accessToken || null
@@ -13,7 +15,6 @@ export const getAccessToken = () => {
 
 export const saveTokenStorage = (accessToken: string) => {
 	Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
-		domain: 'localhost',
 		sameSite: 'strict',
 		expires: 1
 	})

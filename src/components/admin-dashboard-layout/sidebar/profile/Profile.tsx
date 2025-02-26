@@ -1,7 +1,26 @@
 import { useAdminProfile } from '@/hooks/useAdminProfile'
 
 export function Profile() {
-	const { data, isLoading } = useAdminProfile()
+	const { data, isLoading, error, refetch } = useAdminProfile()
+
+	if (isLoading) return <p className='text-gray-500'>Загрузка профиля...</p>
+
+	if (error)
+		return (
+			<div className='text-red-500'>
+				Ошибка: Профиль не найден!
+				<button
+					className='bg-red-500 text-white p-2 rounded ml-2'
+					onClick={() => refetch()}
+				>
+					Повторить попытку
+				</button>
+			</div>
+		)
+
+	if (!data) {
+		return <p className='text-red-500'>Ошибка: Данные не загружены</p>
+	}
 
 	return (
 		<div>

@@ -14,7 +14,7 @@ export interface IProfileResponse {
 	statistics: {
 		label: string
 		value: number
-	}[]
+	}
 }
 
 class InspectorService {
@@ -24,7 +24,7 @@ class InspectorService {
 		try {
 			const response = await axiosWithAuth.get<IProfileResponse>(this.BASE_URL)
 
-			const statistics = Object.entries(response.data.statistics || {}).map(
+			const statistics = Object.entries(response.data.statistics).map(
 				([key, value]) => ({
 					label: this.getStatisticsLabel(key),
 					value: value
@@ -88,7 +88,7 @@ class InspectorService {
 	}
 
 	async deleteFine(id: string) {
-		const response = await axiosWithAuth.delete(`/fine${id}`)
+		const response = await axiosWithAuth.delete(`/fine/${id}`)
 		return response.data
 	}
 

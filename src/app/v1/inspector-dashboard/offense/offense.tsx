@@ -12,7 +12,6 @@ import { IFinesResponse } from '@/types/fines.types'
 import { useLanguageStore } from '@/store/useLanguageStore'
 
 import { translation } from '@/locales/locale'
-import { adminService } from '@/services/admin.service'
 import { inspectorService } from '@/services/inspector.service'
 
 export function Offense() {
@@ -33,7 +32,7 @@ export function Offense() {
 	})
 
 	const deleteFineMutation = useMutation({
-		mutationFn: (id: string) => adminService.deleteFine(id),
+		mutationFn: (id: string) => inspectorService.deleteFine(id),
 		onSuccess() {
 			toast.success(t.offense.deleted)
 			refetch()
