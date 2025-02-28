@@ -75,7 +75,7 @@ export const translation = {
 			name: 'ФИО',
 			pendingTransaction: 'В ожидании',
 			paidTransaction: 'Оплачен',
-			deletedTransaction: 'Удален',
+			deletedTransaction: 'Не оплачен',
 			status: 'Статус',
 			date: 'Дата и время',
 			amount: 'Сумма',
@@ -137,6 +137,12 @@ export const translation = {
 			success: 'Данные инспектора обновлены!',
 			error: 'Не удалось обновить данные!',
 			loadingError: 'Инспектор не найден!'
+		},
+		PaymentPage: {
+			title: 'Выберите способ оплаты',
+			button: 'Оплатить',
+			success: 'Оплата успешно создана',
+			error: 'Ошибка при создании платежа'
 		}
 	},
 	[Locales.UZ]: {
@@ -271,6 +277,12 @@ export const translation = {
 			success: "Inspektor ma'lumotlari yangilandi!",
 			error: 'Maʼlumotlarni yangilab boʻlmadi!',
 			loadingError: 'Inspektor topilmadi!'
+		},
+		PaymentPage: {
+			title: "To'lov usulini tanlang",
+			button: "To'lash",
+			success: 'Toʻlov muvaffaqiyatli yaratildi',
+			error: 'Toʻlovni yaratishda xatolik yuz berdi'
 		}
 	}
 }

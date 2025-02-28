@@ -54,9 +54,17 @@ export function AddOffensePage() {
 
 	const createFineMutation = useMutation({
 		mutationFn: (data: ICreateFine) => inspectorService.createFine(data),
-		onSuccess() {
+		onSuccess(fine) {
+			console.log('OFFENSE', fine)
+			if (!fine?.fineId) {
+				console.error('❌ Ошибка: fineId отсутствует!')
+				toast.error('Ошибка: ID штрафа не найден')
+				return
+			}
 			toast.success(t['add-offense'].success)
-			router.push('/v1/inspector-dashboard/offense')
+			router.push(
+				`/v1/inspector-dashboard/offense/payment-selection?fineId=${fine.fineId}`
+			)
 		},
 		onError(error) {
 			console.error('Ошибка при добавлении штрафа:', error)
