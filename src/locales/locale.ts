@@ -41,7 +41,8 @@ export const translation = {
 			deleted: 'Штраф удалён!',
 			error: 'Не удалось удалить штраф',
 			deleteMessage: 'Вы уверены, что хотите удалить?',
-			cancel: 'Отмена'
+			cancel: 'Отмена',
+			allStatuses: 'Все штрафы'
 		},
 		'add-offense': {
 			name: 'ФИО',
@@ -176,13 +177,14 @@ export const translation = {
 			addTypeOffense: "Jarima turini qo'shish",
 			addOffense: "Jarima qo'shish",
 			pending: "To'lov kutulmoqda",
-			paid: "To'landi",
+			paid: "To'langan",
 			pendingDeleting: "O'chirilmoqda..",
 			deleting: "O'chirish",
 			deleted: "Jarima o'chirildi!",
 			error: "Jarimani o'chirilmadi!",
 			deleteMessage: 'Haqiqatan ham oʻchirib tashlamoqchimisiz?',
-			cancel: 'Chiqish'
+			cancel: 'Chiqish',
+			allStatuses: 'Barcha jarimalar'
 		},
 		'add-offense': {
 			name: 'FIO',

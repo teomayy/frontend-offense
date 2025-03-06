@@ -72,7 +72,7 @@ async function getUserRole(refreshToken: string): Promise<string | null> {
 
 		const data = await response.json()
 		console.log('USER ROLE:', data.role)
-		return data.role // Ожидаем, что API вернет роль пользователя
+		return data.role
 	} catch (error) {
 		console.error('Ошибка проверки роли пользователя:', error)
 		return null

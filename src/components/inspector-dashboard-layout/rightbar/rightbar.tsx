@@ -10,7 +10,7 @@ export function RightBar() {
 	const t = translation[locale]
 
 	return (
-		<div className='fixed'>
+		<div className='fixed hidden md:block'>
 			<div className='relative bg-gradient-to-t from-[#A294F9] to-[#A294F9] dark:from-[#182237] dark:to-[#253352] py-5 px-6 rounded-xl'>
 				<div className='absolute bottom-0 right-0 w-[50%] h-[50%] '>
 					<Image

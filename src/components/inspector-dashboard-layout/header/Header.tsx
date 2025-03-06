@@ -28,7 +28,7 @@ export function Header() {
 	return (
 		<header className='flex justify-between p-5 rounded-xl dark:bg-sidebar items-center bg-[#A294F9]'>
 			<Heading title={getTitle()} />
-			<div className='flex items-center gap-5'>
+			<div className='flex items-center gap-5 justify-between'>
 				<div className='flex items-center gap-3 dark:bg-[#2e374a] bg-[#CDC1FF] p-3 rounded-xl'>
 					<Search />
 					<input
