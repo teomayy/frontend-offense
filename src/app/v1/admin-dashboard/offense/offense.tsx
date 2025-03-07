@@ -1,6 +1,7 @@
 'use client'
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { toast } from 'sonner'
@@ -17,8 +18,13 @@ import { adminService } from '@/services/admin.service'
 export function Offense() {
 	const { locale } = useLanguageStore()
 	const t = translation[locale]
-
+	const [statusFilter, setStatusFilter] = useState('')
+	const [inspectorFilter, setInsperctorFilter] = useState('')
 	const [searchTerm, setSearchTerm] = useState('')
+	const [startDate, setStartDate] = useState('')
+	const [endDate, setEndDate] = useState('')
+	const [currentPage, setCurrentPage] = useState(1)
+	const finesPerPage = 5
 	const [modalData, setModalData] = useState<{
 		id: string
 	} | null>(null)
@@ -28,6 +34,12 @@ export function Offense() {
 	const { data: fines, isLoading } = useQuery({
 		queryKey: ['fines'],
 		queryFn: () => adminService.getFines(),
+		staleTime: 5 * 60 * 1000
+	})
+
+	const { data: inspectors } = useQuery({
+		queryKey: ['inspectors'],
+		queryFn: adminService.getInspectors,
 		staleTime: 5 * 60 * 1000
 	})
 
@@ -54,15 +66,100 @@ export function Offense() {
 		}
 	}
 
-	const filteredFines = fines?.filter((fine: { name: string }) =>
-		fine.name.toLowerCase().includes(searchTerm.toLowerCase())
-	)
+	const filteredFines = fines
+		? fines.filter((fine: IFinesResponse) => {
+				const fineDate = new Date(fine.issuedAt).toISOString().split('T')[0]
+				const searchQuery = searchTerm.toLowerCase()
+
+				// Проверяем поиск
+				const matchesSearch =
+					fine.name.toLowerCase().includes(searchQuery) ||
+					fine.amount.toString().includes(searchQuery)
+
+				// Проверяем статус
+				const matchesStatus = statusFilter ? fine.status === statusFilter : true
+
+				// По инспектору
+				const matchesInspector = inspectorFilter
+					? fine.inspector?.id === inspectorFilter
+					: true
+
+				const matchesDate =
+					(!startDate || fineDate >= startDate) &&
+					(!endDate || fineDate <= endDate)
+
+				return matchesDate && matchesStatus && matchesSearch && matchesInspector
+			})
+		: []
+
+	const totalFines = filteredFines.length || 0
+	const totalPages = Math.ceil(totalFines / finesPerPage)
+
+	// 🏷 Рассчитываем текущий диапазон элементов для пагинации
+	const indexOfLastFine = currentPage * finesPerPage
+	const indexOfFirstFine = indexOfLastFine - finesPerPage
+	const currentFines = filteredFines?.slice(indexOfFirstFine, indexOfLastFine)
+
+	// 🏷 Обработчики кнопок пагинации
+	const nextPage = () => {
+		if (indexOfLastFine < filteredFines?.length) {
+			setCurrentPage(prev => prev + 1)
+		}
+	}
+
+	const prevPage = () => {
+		if (currentPage > 1) {
+			setCurrentPage(prev => prev - 1)
+		}
+	}
 
 	return (
 		<>
 			<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl mt-5'>
 				<div className='flex items-center justify-between'>
-					<Search placeholder={t.offense.search} />
+					<div className='flex flex-col xl:flex-row gap-3'>
+						<Search placeholder={t.offense.search} />
+						<select
+							value={statusFilter}
+							onChange={e => setStatusFilter(e.target.value)}
+							className='p-3 bg-bg text-white border-[#2e374a] rounded-xl'
+						>
+							<option value=''>{t.offense.allStatuses}</option>
+							<option
+								value='pending'
+								className='bg-[#f7cb7375]'
+							>
+								{t.offense.pending}
+							</option>
+							<option
+								value='paid'
+								className='bg-[#5D8736]'
+							>
+								{t.offense.paid}
+							</option>
+							<option
+								value='deleted'
+								className='bg-[#BE3144]'
+							>
+								{t.statistics.deletedTransaction}
+							</option>
+						</select>
+						<select
+							value={inspectorFilter}
+							onChange={e => setInsperctorFilter(e.target.value)}
+							className='p-3 dark:bg-bg dark:text-white rounded-xl'
+						>
+							<option value=''>{t.offense.allInspectors}</option>
+							{fines?.map(fine => (
+								<option
+									key={fine.inspectorId}
+									value={fine.inspectorId}
+								>
+									{fine.inspector.name}
+								</option>
+							))}
+						</select>
+					</div>
 				</div>
 				<table className='w-full mt-5'>
 					<thead>
@@ -83,8 +180,8 @@ export function Offense() {
 									Загрузка...
 								</td>
 							</tr>
-						) : filteredFines?.length ? (
-							filteredFines?.map((fine: IFinesResponse) => (
+						) : currentFines?.length ? (
+							currentFines?.map((fine: IFinesResponse) => (
 								<tr
 									key={fine.id}
 									className='border-t border-gray-700 hover:bg-[#7c70ca] dark:hover:bg-gray-700'
@@ -133,6 +230,24 @@ export function Offense() {
 						)}
 					</tbody>
 				</table>
+				{/* Пагинация */}
+				<div className='flex justify-between items-center mt-5'>
+					<button
+						className='cursor-pointer'
+						onClick={prevPage}
+						disabled={currentPage === 1}
+					>
+						<ArrowLeft />
+					</button>
+					<span>{`${currentPage} / ${totalPages}`}</span>
+					<button
+						className='cursor-pointer'
+						onClick={nextPage}
+						disabled={currentPage >= totalPages}
+					>
+						<ArrowRight />
+					</button>
+				</div>
 			</div>
 			{/* Модальное окно подтверждения удаления */}
 			{modalData &&

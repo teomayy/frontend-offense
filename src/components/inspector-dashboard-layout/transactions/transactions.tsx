@@ -15,6 +15,9 @@ export function Transactions() {
 		queryKey: ['transactions'],
 		queryFn: () => inspectorService.getFines()
 	})
+
+	const latestTransactions = transactions?.slice(-5) || []
+
 	return (
 		<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl'>
 			<h2 className='font-extralight text-textSoft'>
@@ -39,8 +42,8 @@ export function Transactions() {
 								{t.TableOffenseTypes.loading}
 							</td>
 						</tr>
-					) : transactions?.length ? (
-						transactions.map((transaction: IFinesResponse) => (
+					) : latestTransactions?.length ? (
+						latestTransactions.map((transaction: IFinesResponse) => (
 							<tr
 								key={transaction.id}
 								className='border-t border-gray-700 hover:bg-[#7c70ca] dark:hover:bg-gray-700'
@@ -48,7 +51,7 @@ export function Transactions() {
 								<td className='p-3'>{transaction.name}</td>
 								<td className='p-4'>
 									<span
-										className={`rounded-md p-2 text-xs ${transaction.status === 'pending' ? 'bg-[#f7cb7375]' : transaction.status === 'paid' ? 'bg-teal-500' : 'bg-red-500'} text-white`}
+										className={`rounded-md p-2 text-xs ${transaction.status === 'pending' ? 'bg-[#f7cb7375]' : transaction.status === 'paid' ? 'bg-[#5D8736]' : 'bg-[#BE3144]'} text-white`}
 									>
 										{transaction.status === 'pending'
 											? t.statistics.pending

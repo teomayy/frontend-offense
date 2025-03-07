@@ -16,6 +16,8 @@ export function Transactions() {
 		queryFn: () => adminService.getFines()
 	})
 
+	const lastTransactions = transactions.slice(-5) || []
+
 	return (
 		<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl'>
 			<h2 className='font-extralight text-textSoft'>
@@ -40,8 +42,8 @@ export function Transactions() {
 								Загрузка...
 							</td>
 						</tr>
-					) : transactions?.length ? (
-						transactions.map((transaction: IFinesResponse) => (
+					) : lastTransactions?.length ? (
+						lastTransactions.map((transaction: IFinesResponse) => (
 							<tr
 								key={transaction.id}
 								className='border-t border-gray-700 hover:bg-[#7c70ca] dark:hover:bg-gray-700'

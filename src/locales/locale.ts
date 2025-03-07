@@ -42,7 +42,8 @@ export const translation = {
 			error: 'Не удалось удалить штраф',
 			deleteMessage: 'Вы уверены, что хотите удалить?',
 			cancel: 'Отмена',
-			allStatuses: 'Все штрафы'
+			allStatuses: 'Все штрафы',
+			allInspectors: 'Все Инспекторы'
 		},
 		'add-offense': {
 			name: 'ФИО',
@@ -184,7 +185,8 @@ export const translation = {
 			error: "Jarimani o'chirilmadi!",
 			deleteMessage: 'Haqiqatan ham oʻchirib tashlamoqchimisiz?',
 			cancel: 'Chiqish',
-			allStatuses: 'Barcha jarimalar'
+			allStatuses: 'Barcha jarimalar',
+			allInspectors: 'Barcha Inspectorlar'
 		},
 		'add-offense': {
 			name: 'FIO',

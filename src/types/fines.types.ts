@@ -16,6 +16,7 @@ export interface IFinesResponse {
 	id: string
 	name: string
 	inspectorId: string
+	inspector?: { id: string; name: string }
 	phone: string
 	fineTypeId: string
 	baseSalary: number
