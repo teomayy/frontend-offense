@@ -74,7 +74,7 @@ export function Transactions() {
 								colSpan={4}
 								className='text-center p-3'
 							>
-								Нет активных штрафов
+								{t.statistics.noActive}
 							</td>
 						</tr>
 					)}

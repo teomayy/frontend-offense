@@ -43,7 +43,8 @@ export const translation = {
 			deleteMessage: 'Вы уверены, что хотите удалить?',
 			cancel: 'Отмена',
 			allStatuses: 'Все штрафы',
-			allInspectors: 'Все Инспекторы'
+			allInspectors: 'Все Инспекторы',
+			notFound: 'Штрафов не найдено'
 		},
 		'add-offense': {
 			name: 'ФИО',
@@ -186,7 +187,8 @@ export const translation = {
 			deleteMessage: 'Haqiqatan ham oʻchirib tashlamoqchimisiz?',
 			cancel: 'Chiqish',
 			allStatuses: 'Barcha jarimalar',
-			allInspectors: 'Barcha Inspectorlar'
+			allInspectors: 'Barcha Inspectorlar',
+			notFound: 'Jarimalar topilmadi'
 		},
 		'add-offense': {
 			name: 'FIO',

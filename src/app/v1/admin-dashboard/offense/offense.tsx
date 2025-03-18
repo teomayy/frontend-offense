@@ -224,7 +224,7 @@ export function Offense() {
 									colSpan={4}
 									className='text-center p-3'
 								>
-									Штрафов не найдено
+									{t.offense.notFound}
 								</td>
 							</tr>
 						)}
