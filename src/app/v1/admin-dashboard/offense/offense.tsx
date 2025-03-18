@@ -117,8 +117,10 @@ export function Offense() {
 		<>
 			<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl mt-5'>
 				<div className='flex items-center justify-between'>
-					<div className='flex flex-col xl:flex-row gap-3'>
+					<div>
 						<Search placeholder={t.offense.search} />
+					</div>
+					<div className='flex flex-col lg:flex-row gap-3'>
 						<select
 							value={statusFilter}
 							onChange={e => setStatusFilter(e.target.value)}
@@ -164,10 +166,18 @@ export function Offense() {
 				<table className='w-full mt-5'>
 					<thead>
 						<tr>
-							<th className='p-3 text-left'>{t.offense.name}</th>
-							<th className='p-3 text-left'>{t.offense.amount}</th>
-							<th className='p-3 text-left'>{t.offense.status}</th>
-							<th className='p-3 text-left'>{t.offense.action}</th>
+							<th className='p-3 text-left text-[9px] md:text-xs'>
+								{t.offense.name}
+							</th>
+							<th className='p-3 text-left text-[9px] md:text-xs'>
+								{t.offense.amount}
+							</th>
+							<th className='p-3 text-left text-[9px] md:text-xs'>
+								{t.offense.status}
+							</th>
+							<th className='p-3 text-left text-[9px] md:text-xs'>
+								{t.offense.action}
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -186,9 +196,11 @@ export function Offense() {
 									key={fine.id}
 									className='border-t border-gray-700 hover:bg-[#7c70ca] dark:hover:bg-gray-700'
 								>
-									<td className='p-3'>{fine.name}</td>
-									<td className='p-3'>{fine.amount} сум</td>
-									<td className='p-3'>
+									<td className='p-3 text-[9px] md:text-xs'>{fine.name}</td>
+									<td className='p-3 text-[9px] md:text-xs'>
+										{fine.amount} сум
+									</td>
+									<td className='p-3 text-[9px] md:text-xs'>
 										<span
 											className={`px-2 py-1 rounded text-white ${
 												fine.status === 'pending'
@@ -205,10 +217,10 @@ export function Offense() {
 													: t.offense.deleted}
 										</span>
 									</td>
-									<td className='p-3'>
+									<td className='p-3 text-[9px] md:text-xs'>
 										<button
 											onClick={() => handleDelete(fine.id)}
-											className='py-1 px-3 bg-red-500 text-white rounded-md cursor-pointer'
+											className='py-1 px-3 bg-[#BE3144] text-white rounded-md cursor-pointer'
 											disabled={deleteFineMutation.isPending}
 										>
 											{deleteFineMutation.isPending

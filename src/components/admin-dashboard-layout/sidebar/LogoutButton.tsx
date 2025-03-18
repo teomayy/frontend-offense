@@ -34,7 +34,7 @@ export function LogoutButton() {
 	return (
 		<>
 			<button
-				className='py-1.5 px-layout my-2 flex items-center gap-3 cursor-pointer rounded-xl bg-none border-none w-full hover:bg-border text-center'
+				className='md:py-1.5 md:px-layout mt-2 p-2 flex md:flex-row flex-col items-center gap-2.5 cursor-pointer rounded-xl bg-none border-none lg:w-full hover:bg-border text-center transition-colors'
 				onClick={handleLogoutClick}
 			>
 				<LogOut size={20} />

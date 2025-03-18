@@ -1,6 +1,7 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -49,47 +50,58 @@ export function Login() {
 	}
 
 	return (
-		<div className='w-full h-screen flex items-center justify-center dark:bg-bg bg-[#CDC1FF]'>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className='dark:bg-sidebar bg-[#A294F9] p-14 rounded-xl w-[400px] flex flex-col items-center gap-6'
-			>
-				<Heading title={t.auth.auth} />
-
-				<div className='w-full'>
-					<input
-						type='text'
-						{...register('login', { required: t.inspectors.loginRequired })}
-						placeholder={t.auth['login']}
-						className='w-full p-4 border border-gray-500 rounded-md dark:bg-bg bg-[#CDC1FF] dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500'
-					/>
-					{errors.login && (
-						<p className='text-red-500 text-sm'>{errors.login.message}</p>
-					)}
-				</div>
-
-				<div className='w-full'>
-					<input
-						type='password'
-						{...register('password', {
-							required: t.inspectors.passwordRequired
-						})}
-						placeholder={t.auth.password}
-						className='w-full p-4 border border-gray-500 rounded-md dark:bg-bg bg-[#CDC1FF] dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500'
-					/>
-					{errors.password && (
-						<p className='text-red-500 text-sm'>{errors.password.message}</p>
-					)}
-				</div>
-
-				<button
-					type='submit'
-					disabled={mutation.isPending || isSubmitting}
-					className='w-full p-4 bg-teal-700 text-white rounded-md hover:bg-teal-600 transition disabled:bg-gray-600'
+		<div>
+			<div className='w-full h-screen flex items-center justify-center dark:bg-bg bg-[#CDC1FF] flex-col'>
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className='dark:bg-sidebar bg-[#A294F9] p-14 rounded-xl w-[400px] flex flex-col items-center gap-6'
 				>
-					{mutation.isPending ? 'Вход...' : t.auth['log-in']}
-				</button>
-			</form>
+					<Heading title={t.auth.auth} />
+
+					<div className='w-full'>
+						<input
+							type='text'
+							{...register('login', { required: t.inspectors.loginRequired })}
+							placeholder={t.auth['login']}
+							className='w-full p-4 border border-gray-500 rounded-md dark:bg-bg bg-[#CDC1FF] dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500'
+						/>
+						{errors.login && (
+							<p className='text-red-500 text-sm'>{errors.login.message}</p>
+						)}
+					</div>
+
+					<div className='w-full'>
+						<input
+							type='password'
+							{...register('password', {
+								required: t.inspectors.passwordRequired
+							})}
+							placeholder={t.auth.password}
+							className='w-full p-4 border border-gray-500 rounded-md dark:bg-bg bg-[#CDC1FF] dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500'
+						/>
+						{errors.password && (
+							<p className='text-red-500 text-sm'>{errors.password.message}</p>
+						)}
+					</div>
+
+					<button
+						type='submit'
+						disabled={mutation.isPending || isSubmitting}
+						className='w-full p-4 bg-teal-700 text-white rounded-md hover:bg-teal-600 transition disabled:bg-gray-600'
+					>
+						{mutation.isPending ? 'Вход...' : t.auth['log-in']}
+					</button>
+				</form>
+				<div className='flex items-center justify-between mt-8 dark:text-textSoft mx-auto gap-16'>
+					<Link
+						className='cursor-pointer hover:text-white'
+						href={'https://ibrokhimjon.vercel.app/'}
+					>
+						Ibrokhimjon dev
+					</Link>
+					<div>© All rights reserved</div>
+				</div>
+			</div>
 		</div>
 	)
 }

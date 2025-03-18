@@ -58,7 +58,7 @@ export function Statistics() {
 	}
 
 	return (
-		<div className='grid grid-cols-4 gap-5 mt-5'>
+		<div className='grid xl:grid-cols-4 gap-5 mt-5'>
 			<div className='col-span-3 flex flex-col gap-5 '>
 				<div className='grid grid-cols-3 gap-5'>
 					{updatedStats.map((item, index) => (

@@ -139,13 +139,13 @@ export function Offense() {
 					</div>
 					<div className='flex flex-col xl:flex-row gap-3'>
 						<Link href='offense/add-type'>
-							<button className='p-3 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white  border-none rounded-md cursor-pointer'>
+							<button className='md:p-3 p-1 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white  border-none rounded-md cursor-pointer'>
 								{' '}
 								{t.offense.addTypeOffense}
 							</button>
 						</Link>
 						<Link href='offense/add'>
-							<button className='p-3 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white border-none rounded-md cursor-pointer'>
+							<button className='md:p-3 p-1 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white border-none rounded-md cursor-pointer'>
 								{' '}
 								{t.offense.addOffense}
 							</button>
@@ -155,11 +155,21 @@ export function Offense() {
 				<table className='w-full mt-5'>
 					<thead>
 						<tr>
-							<th className='p-3 text-left'>{t.offense.name}</th>
-							<th className='p-3 text-left'>{t.offense.date}</th>
-							<th className='p-3 text-left'>{t.offense.amount}</th>
-							<th className='p-3 text-left'>{t.offense.status}</th>
-							<th className='p-3 text-left'>{t.offense.action}</th>
+							<th className='p-3 text-left text-[9px] md:text-xs'>
+								{t.offense.name}
+							</th>
+							<th className='p-3 text-left text-[9px] md:text-xs'>
+								{t.offense.date}
+							</th>
+							<th className='p-3 text-left text-[9px] md:text-xs'>
+								{t.offense.amount}
+							</th>
+							<th className='p-3 text-left text-[9px] md:text-xs'>
+								{t.offense.status}
+							</th>
+							<th className='p-3 text-left text-[9px] md:text-xs'>
+								{t.offense.action}
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -167,7 +177,7 @@ export function Offense() {
 							<tr>
 								<td
 									colSpan={4}
-									className='text-center p-3'
+									className='text-center p-3 '
 								>
 									Загрузка...
 								</td>
@@ -178,14 +188,16 @@ export function Offense() {
 									key={fine.id}
 									className='border-t border-gray-700 dark:hover:bg-gray-700 hover:bg-[#877bd3] rounded-md'
 								>
-									<td className='p-3'>{fine.name}</td>
-									<td className='p-3'>
+									<td className='p-3 text-[9px] md:text-xs'>{fine.name}</td>
+									<td className='p-3 text-[9px] md:text-xs'>
 										{new Date(fine.issuedAt).toLocaleDateString('ru-RU')}
 									</td>
-									<td className='p-3'>{fine.amount} сум</td>
-									<td className='p-3'>
+									<td className='p-3 text-[9px] md:text-xs'>
+										{fine.amount} сум
+									</td>
+									<td className='p-3 text-[5px] md:text-xs'>
 										<span
-											className={`px-2 py-1 rounded text-white ${
+											className={`px-2 py-1  rounded text-white ${
 												fine.status === 'pending'
 													? 'bg-[#f7cb7375]'
 													: fine.status === 'paid'
@@ -200,7 +212,7 @@ export function Offense() {
 													: t.statistics.deletedTransaction}
 										</span>
 									</td>
-									<td className='p-3'>
+									<td className='p-3 text-[9px] md:text-xs'>
 										<button
 											onClick={() => handleDelete(fine.id)}
 											className='py-1 px-3 bg-[#BE3144] text-white rounded-md cursor-pointer'

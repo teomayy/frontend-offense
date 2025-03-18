@@ -26,10 +26,10 @@ export function Transactions() {
 			<table className='w-full'>
 				<thead>
 					<tr>
-						<td className='p-3'>{t.statistics.name}</td>
-						<td className='p-3'>{t.statistics.status}</td>
-						<td className='p-3'>{t.statistics.date}</td>
-						<td className='p-3'>{t.statistics.amount}</td>
+						<td className='p-3 text-[9px] md:text-xs'>{t.statistics.name}</td>
+						<td className='p-3 text-[9px] md:text-xs'>{t.statistics.status}</td>
+						<td className='p-3 text-[9px] md:text-xs'>{t.statistics.date}</td>
+						<td className='p-3 text-[9px] md:text-xs'>{t.statistics.amount}</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,10 +48,12 @@ export function Transactions() {
 								key={transaction.id}
 								className='border-t border-gray-700 hover:bg-[#7c70ca] dark:hover:bg-gray-700'
 							>
-								<td className='p-3'>{transaction.name}</td>
-								<td className='p-4'>
+								<td className='p-3 text-[9px] md:text-xs'>
+									{transaction.name}
+								</td>
+								<td className='p-4 text-[9px] md:text-xs'>
 									<span
-										className={`rounded-md p-2 text-xs ${transaction.status === 'pending' ? 'bg-[#f7cb7375]' : transaction.status === 'paid' ? 'bg-[#5D8736]' : 'bg-[#BE3144]'} text-white`}
+										className={`rounded-md p-2 text-[9px] md:text-xs ${transaction.status === 'pending' ? 'bg-[#f7cb7375]' : transaction.status === 'paid' ? 'bg-[#5D8736]' : 'bg-[#BE3144]'} text-white`}
 									>
 										{transaction.status === 'pending'
 											? t.statistics.pending
@@ -60,10 +62,10 @@ export function Transactions() {
 												: t.statistics.deletedTransaction}
 									</span>
 								</td>
-								<td className='p-3'>
+								<td className='p-3 text-[9px] md:text-xs'>
 									{new Date(transaction.issuedAt).toLocaleString('RU')}
 								</td>
-								<td className='p-3'>
+								<td className='p-3 text-[9px] md:text-xs'>
 									{transaction.amount.toLocaleString()} сум
 								</td>
 							</tr>
