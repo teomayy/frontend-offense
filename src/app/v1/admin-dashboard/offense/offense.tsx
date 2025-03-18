@@ -81,7 +81,7 @@ export function Offense() {
 
 				// По инспектору
 				const matchesInspector = inspectorFilter
-					? fine.inspector?.id === inspectorFilter
+					? String(fine.inspector?.id) === inspectorFilter
 					: true
 
 				const matchesDate =
@@ -150,12 +150,12 @@ export function Offense() {
 							className='p-3 dark:bg-bg dark:text-white rounded-xl'
 						>
 							<option value=''>{t.offense.allInspectors}</option>
-							{fines?.map(fine => (
+							{inspectors?.map((inspector: { id: string; name: string }) => (
 								<option
-									key={fine.inspectorId}
-									value={fine.inspectorId}
+									key={inspector.id}
+									value={inspector.id}
 								>
-									{fine.inspector.name}
+									{inspector.name}
 								</option>
 							))}
 						</select>

@@ -16,7 +16,7 @@ export function Transactions() {
 		queryFn: () => adminService.getFines()
 	})
 
-	const lastTransactions = transactions.slice(-5) || []
+	const lastTransactions = transactions ? transactions.slice(-5) : []
 
 	return (
 		<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl'>

@@ -1,7 +1,7 @@
 export enum EnumFineStatus {
 	PENDING = 'pending',
 	PAID = 'paid',
-	DELETED = 'deleted'
+	CANCELED = 'canceled'
 }
 
 export interface ICreateFine {
