@@ -124,7 +124,7 @@ export function Offense() {
 						<select
 							value={statusFilter}
 							onChange={e => setStatusFilter(e.target.value)}
-							className='p-3 bg-bg text-white border-[#2e374a] rounded-xl'
+							className='md:p-3 p-1 bg-bg text-white border-[#2e374a] rounded-xl md:text-xs text-[9px]'
 						>
 							<option value=''>{t.offense.allStatuses}</option>
 							<option
@@ -149,7 +149,7 @@ export function Offense() {
 						<select
 							value={inspectorFilter}
 							onChange={e => setInsperctorFilter(e.target.value)}
-							className='p-3 dark:bg-bg dark:text-white rounded-xl'
+							className='md:p-3 p-1 dark:bg-bg dark:text-white rounded-xl md:text-xs text-[9px]'
 						>
 							<option value=''>{t.offense.allInspectors}</option>
 							{inspectors?.map((inspector: { id: string; name: string }) => (

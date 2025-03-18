@@ -52,10 +52,18 @@ export function FineTypesTable() {
 			<table className='w-full border-collapse'>
 				<thead>
 					<tr className='border-b border-gray-700'>
-						<th className='p-3 text-left'>{t.TableOffenseTypes.name}</th>
-						<th className='p-3 text-left'>{t.TableOffenseTypes.percentage}</th>
-						<th className='p-3 text-left'>{t.TableOffenseTypes.fixedAmount}</th>
-						<th className='p-3 text-left'>{t.TableOffenseTypes.action}</th>
+						<th className='p-3 text-left md:text-xs text-[9px]'>
+							{t.TableOffenseTypes.name}
+						</th>
+						<th className='p-3 text-left md:text-xs text-[9px]'>
+							{t.TableOffenseTypes.percentage}
+						</th>
+						<th className='p-3 text-left md:text-xs text-[9px]'>
+							{t.TableOffenseTypes.fixedAmount}
+						</th>
+						<th className='p-3 text-left md:text-xs text-[9px]'>
+							{t.TableOffenseTypes.action}
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -74,16 +82,16 @@ export function FineTypesTable() {
 								key={type.id}
 								className='border-b border-gray-700 hover:bg-[#877bd3]'
 							>
-								<td className='p-3'>{type.name}</td>
-								<td className='p-3'>
+								<td className='p-3 md:text-xs text-[9px]'>{type.name}</td>
+								<td className='p-3 md:text-xs text-[9px]'>
 									{type.percentage ? `${type.percentage}%` : '—'}
 								</td>
-								<td className='p-3'>
+								<td className='p-3 md:text-xs text-[9px]'>
 									{type.fixedAmount
 										? `${type.fixedAmount.toLocaleString()} сум`
 										: '—'}
 								</td>
-								<td className='p-3'>
+								<td className='p-3 md:text-xs text-[9px]'>
 									<button
 										onClick={() => handleDelete(type.id)}
 										className='py-1 px-3 bg-[#BE3144] text-white rounded-md cursor-pointer'

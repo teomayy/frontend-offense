@@ -114,7 +114,7 @@ export function Offense() {
 						<select
 							value={statusFilter}
 							onChange={e => setStatusFilter(e.target.value)}
-							className='p-3 dark:bg-bg bg-[#CDC1FF] dark:text-white border border-[#2e374a] rounded-xl'
+							className='md:p-3 p-1 dark:bg-bg bg-[#CDC1FF] dark:text-white border border-[#2e374a] rounded-xl'
 						>
 							<option value=''>{t.offense.allStatuses}</option>
 							<option
@@ -139,13 +139,13 @@ export function Offense() {
 					</div>
 					<div className='flex flex-col xl:flex-row gap-3'>
 						<Link href='offense/add-type'>
-							<button className='md:p-3 p-1 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white  border-none rounded-md cursor-pointer'>
+							<button className='md:p-3 p-2 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white  border-none rounded-md cursor-pointer md:text-xs text-[9px]'>
 								{' '}
 								{t.offense.addTypeOffense}
 							</button>
 						</Link>
 						<Link href='offense/add'>
-							<button className='md:p-3 p-1 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white border-none rounded-md cursor-pointer'>
+							<button className='md:p-3 p-2 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white border-none rounded-md cursor-pointer md:text-xs text-[9px]'>
 								{' '}
 								{t.offense.addOffense}
 							</button>

@@ -24,7 +24,7 @@ export function Search({ onSearch }: SearchProps) {
 	}
 
 	return (
-		<div className='flex items-center gap-3 dark:bg-[#2e374a] bg-[#CDC1FF] p-3 rounded-xl w-max  '>
+		<div className='flex items-center gap-3 dark:bg-[#2e374a] bg-[#CDC1FF] p-3 rounded-xl w-max  md:text-xs text-[9px]'>
 			<SearchIcon />
 			<input
 				type='text'

@@ -22,17 +22,19 @@ export function Profile() {
 
 	return (
 		<div>
-			<div className='p-5 top-big-layout left-big-layout'>
+			<div className='md:p-5 p-1 top-big-layout left-big-layout'>
 				{isLoading ? (
 					<span>...Loading</span>
 				) : (
 					<div className='flex items-center gap-3'>
-						<div className='w-10 h-10 flex justify-center items-center text-2xl dark:text-white dark:bg-primary bg-[#E5D9F2] rounded uppercase'>
+						<div className='md:w-10 md:h-10 w-5 h-5 flex justify-center items-center md:text-2xl dark:text-white dark:bg-primary bg-[#E5D9F2] rounded uppercase'>
 							{data?.inspector.name.charAt(0) || 'A'}
 						</div>
-						<div className=' text-left mr-3'>
+						<div className='text-left mr-3 text-[9px] md:text-xs'>
 							<p className='font-bold -mb-1'>{data.inspector.name}</p>
-							<p className='text-sm opacity-40'>{data.inspector.login}</p>
+							<p className='md:text-sm opacity-40 text-[9px]'>
+								{data.inspector.login}
+							</p>
 						</div>
 					</div>
 				)}

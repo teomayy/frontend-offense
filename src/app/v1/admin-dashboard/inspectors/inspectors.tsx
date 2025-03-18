@@ -70,7 +70,7 @@ export default function InspectorPage() {
 				<div className='flex items-center justify-between'>
 					<Search placeholder={t.header.search} />
 					<Link href='inspectors/add'>
-						<button className='p-3 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white  border-none rounded-md cursor-pointer'>
+						<button className='md:p-3 p-1 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white  border-none rounded-md cursor-pointer md:text-xs text-[9px]'>
 							{' '}
 							{t.inspectors.button}
 						</button>
@@ -79,9 +79,15 @@ export default function InspectorPage() {
 				<table className='w-full'>
 					<thead>
 						<tr>
-							<td className='p-3 w-[40%]'>{t.inspectors.name}</td>
-							<td className='p-3 w-[40%]'>{t.inspectors.login}</td>
-							<td className='p-3'>{t.inspectors.action}</td>
+							<td className='p-3 w-[40%] md:text-xs text-[9px]'>
+								{t.inspectors.name}
+							</td>
+							<td className='p-3 w-[40%] md:text-xs text-[9px]'>
+								{t.inspectors.login}
+							</td>
+							<td className='p-3 md:text-xs text-[9px]'>
+								{t.inspectors.action}
+							</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -100,9 +106,13 @@ export default function InspectorPage() {
 									key={inspector.id}
 									className='border-t border-gray-700 hover:bg-[#7c70ca] dark:hover:bg-gray-700'
 								>
-									<td className='p-3 border-none '>{inspector.name || '—'}</td>
-									<td className='p-3 border-none '>{inspector.login}</td>
-									<td className='p-3'>
+									<td className='p-3 border-none md:text-xs text-[9px]'>
+										{inspector.name || '—'}
+									</td>
+									<td className='p-3 border-none md:text-xs text-[9px]'>
+										{inspector.login}
+									</td>
+									<td className='p-3 md:text-xs text-[9px]'>
 										<div className='flex gap-3'>
 											<button
 												onClick={() => handleEdit(inspector.id)}
