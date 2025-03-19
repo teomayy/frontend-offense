@@ -3,7 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { toast } from 'sonner'
 
@@ -39,6 +39,10 @@ export function Offense() {
 		queryFn: () => inspectorService.getFines(),
 		staleTime: 5 * 60 * 1000
 	})
+
+	useEffect(() => {
+		refetch()
+	}, [])
 
 	const deleteFineMutation = useMutation({
 		mutationFn: (id: string) => inspectorService.deleteFine(id),

@@ -1,8 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { Suspense, useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 import { paymentMethods } from '@/constants/methods.constants'
@@ -17,9 +17,7 @@ function PaymentContent() {
 	const t = translation[locale]
 
 	const router = useRouter()
-	const searchParams = new URLSearchParams(
-		typeof window !== 'undefined' ? window.location.search : ''
-	)
+	const searchParams = useSearchParams()
 	const fineId = searchParams.get('fineId')
 
 	const [selectedMethod, setSelectedMethod] = useState<string | null>(null)
@@ -88,9 +86,5 @@ function PaymentContent() {
 }
 
 export default function PaymentSelectionPage() {
-	return (
-		<Suspense fallback={<div>Загрузка...</div>}>
-			<PaymentContent />
-		</Suspense>
-	)
+	return <PaymentContent />
 }
