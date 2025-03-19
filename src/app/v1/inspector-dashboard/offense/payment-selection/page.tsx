@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 import { paymentMethods } from '@/constants/methods.constants'
@@ -86,5 +86,9 @@ function PaymentContent() {
 }
 
 export default function PaymentSelectionPage() {
-	return <PaymentContent />
+	return (
+		<Suspense fallback={<div>Загрузка...</div>}>
+			<PaymentContent />
+		</Suspense>
+	)
 }
