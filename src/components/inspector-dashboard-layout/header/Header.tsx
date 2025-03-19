@@ -40,10 +40,10 @@ export function Header() {
 
 	if (isMobile) {
 		return (
-			<header className='sticky flex justify-between p-5 rounded-xl dark:bg-sidebar items-center bg-[#A294F9] z-50 pt-[env(safe-area-inset-top,0)]'>
+			<header className='sticky top 1 flex justify-between p-5 rounded-xl dark:bg-sidebar items-center bg-[#A294F9] z-50 pt-[env(safe-area-inset-top,0)]'>
 				<Heading title={getTitle()} />
 				<div className='flex items-center gap-5 justify-between'>
-					<div className='flex items-center gap-3 dark:bg-[#2e374a] bg-[#CDC1FF] md:p-3 p-1 mt-2 rounded-xl md:hidden'>
+					<div className='flex items-center gap-3 dark:bg-[#2e374a] bg-[#CDC1FF] md:p-3 w-full mt-2 rounded-xl md:hidden'>
 						<Profile />
 					</div>
 				</div>
