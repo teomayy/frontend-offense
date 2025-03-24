@@ -118,7 +118,10 @@ export function Offense() {
 			<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl mt-5'>
 				<div className='flex items-center justify-between'>
 					<div>
-						<Search placeholder={t.offense.search} />
+						<Search
+							placeholder={t.offense.search}
+							onSearch={value => setSearchTerm(value)}
+						/>
 					</div>
 					<div className='flex flex-col lg:flex-row gap-3'>
 						<select

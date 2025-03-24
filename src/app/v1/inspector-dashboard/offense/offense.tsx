@@ -114,7 +114,10 @@ export function Offense() {
 			<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl mt-5'>
 				<div className='flex items-center justify-between'>
 					<div className='flex flex-col xl:flex-row gap-3'>
-						<Search placeholder={t.offense.search} />
+						<Search
+							placeholder={t.offense.search}
+							onSearch={value => setSearchTerm(value)}
+						/>
 						<select
 							value={statusFilter}
 							onChange={e => setStatusFilter(e.target.value)}

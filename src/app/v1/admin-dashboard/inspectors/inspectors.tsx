@@ -18,6 +18,7 @@ import { adminService } from '@/services/admin.service'
 export default function InspectorPage() {
 	const { locale } = useLanguageStore()
 	const t = translation[locale]
+	const [searchTerm, setSearchTerm] = useState('')
 
 	const queryClient = useQueryClient()
 	const { push } = useRouter()
@@ -61,14 +62,27 @@ export default function InspectorPage() {
 	const confirmDelete = () => {
 		if (selectedInspectorId) {
 			deleteMutation.mutate(selectedInspectorId)
+			closeModal()
 		}
 	}
+
+	const filteredInspectors =
+		inspectors?.filter(inspector => {
+			const term = searchTerm.toLowerCase()
+			return (
+				inspector.name?.toLowerCase().includes(term) ||
+				inspector.login?.toLowerCase().includes(term)
+			)
+		}) || []
 
 	return (
 		<>
 			<div className='dark:bg-sidebar bg-[#A294F9] p-5 rounded-xl mt-5'>
 				<div className='flex items-center justify-between'>
-					<Search placeholder={t.header.search} />
+					<Search
+						placeholder={t.header.search}
+						onSearch={value => setSearchTerm(value)}
+					/>
 					<Link href='inspectors/add'>
 						<button className='md:p-3 p-1 bg-[#605bca] dark:text-white hover:bg-[#6b65d1] text-white  border-none rounded-md cursor-pointer md:text-xs text-[9px]'>
 							{' '}
@@ -100,8 +114,8 @@ export default function InspectorPage() {
 									{t.TableOffenseTypes.loading}
 								</td>
 							</tr>
-						) : inspectors?.length ? (
-							inspectors.map(inspector => (
+						) : filteredInspectors.length ? (
+							filteredInspectors.map(inspector => (
 								<tr
 									key={inspector.id}
 									className='border-t border-gray-700 hover:bg-[#7c70ca] dark:hover:bg-gray-700'

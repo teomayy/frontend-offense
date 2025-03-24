@@ -19,6 +19,7 @@ export function AddFineTypePage() {
 	const router = useRouter()
 	const { locale } = useLanguageStore()
 	const t = translation[locale]
+	const [searchTerm, setSearchTerm] = useState('')
 
 	const {
 		register,

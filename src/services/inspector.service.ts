@@ -136,7 +136,7 @@ class InspectorService {
 	}
 
 	async deleteFineType(id: string) {
-		const response = await axiosWithAuth.delete(`${this.BASE_URL}/${id}`)
+		const response = await axiosWithAuth.delete(`/fine-type/${id}`)
 		return response.data
 	}
 
