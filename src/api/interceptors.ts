@@ -8,7 +8,7 @@ import {
 import { authService } from '@/services/auth.service'
 
 const options: CreateAxiosDefaults = {
-	baseURL: 'http://localhost:4300/api',
+	baseURL: 'https://mses-jarima.uz/api',
 	headers: {
 		'Content-Type': 'application/json'
 	},
