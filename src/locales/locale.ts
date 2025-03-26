@@ -27,8 +27,10 @@ export const translation = {
 		},
 		offense: {
 			name: 'ФИО',
+			phone: 'Номер телефона',
 			date: 'Дата штрафа',
 			amount: 'Сумма',
+			discountAmount: 'Сумма со скидкой',
 			status: 'Статус',
 			action: 'Действия',
 			search: 'Поиск штрафа...',
@@ -171,8 +173,10 @@ export const translation = {
 		},
 		offense: {
 			name: 'FIO',
+			phone: 'Telefon raqam',
 			date: 'Jarima sanasi',
 			amount: 'Miqdori',
+			discountAmount: 'Chegirma miqdori',
 			status: 'Holat',
 			action: 'Amallar',
 			search: 'Jarima qidirish...',

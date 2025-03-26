@@ -166,10 +166,13 @@ export function Offense() {
 								{t.offense.name}
 							</th>
 							<th className='p-3 text-left text-[9px] md:text-xs'>
+								{t.offense.phone}
+							</th>
+							<th className='p-3 text-left text-[9px] md:text-xs'>
 								{t.offense.date}
 							</th>
 							<th className='p-3 text-left text-[9px] md:text-xs'>
-								{t.offense.amount}
+								{t.offense.amount} / {t.offense.discountAmount}
 							</th>
 							<th className='p-3 text-left text-[9px] md:text-xs'>
 								{t.offense.status}
@@ -196,11 +199,12 @@ export function Offense() {
 									className='border-t border-gray-700 dark:hover:bg-gray-700 hover:bg-[#877bd3] rounded-md'
 								>
 									<td className='p-3 text-[9px] md:text-xs'>{fine.name}</td>
+									<td className='p-3 text-[9px] md:text-xs'>{fine.phone}</td>
 									<td className='p-3 text-[9px] md:text-xs'>
 										{new Date(fine.issuedAt).toLocaleDateString('ru-RU')}
 									</td>
 									<td className='p-3 text-[9px] md:text-xs'>
-										{fine.amount} сум
+										{fine.amount} сум / {fine.discountedAmount} сум
 									</td>
 									<td className='p-3 text-[5px] md:text-xs'>
 										<span
