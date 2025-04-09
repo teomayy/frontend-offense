@@ -71,6 +71,11 @@ class AdminService {
 		const response = await axiosWithAuth.get(`${this.BASE_URL}/stats`)
 		return response.data
 	}
+
+	async getFineLogs(fineId: string) {
+		const response = await axiosWithAuth.get(`/fine-log/${fineId}`)
+		return response.data
+	}
 }
 
 export const adminService = new AdminService()
