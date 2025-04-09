@@ -8,6 +8,13 @@ import { useLanguageStore } from '@/store/useLanguageStore'
 import { translation } from '@/locales/locale'
 import { inspectorService } from '@/services/inspector.service'
 
+interface FineLog {
+	id: string
+	amount: number
+	status: 'pending' | 'paid' | 'deleted'
+	createdAt: string
+}
+
 export default function FineLogsPage() {
 	const { id } = useParams() as { id: string }
 	const router = useRouter()
@@ -15,7 +22,7 @@ export default function FineLogsPage() {
 	const { locale } = useLanguageStore()
 	const t = translation[locale]
 
-	const { data: logs, isLoading } = useQuery({
+	const { data: logs, isLoading } = useQuery<FineLog[]>({
 		queryKey: ['finelogs', id],
 		queryFn: async () => await inspectorService.getFineLogs(id),
 		enabled: !!id
@@ -53,12 +60,18 @@ export default function FineLogsPage() {
 					</tr>
 				</thead>
 				<tbody>
-					{logs.map(log => (
+					{logs.map((log: FineLog) => (
 						<tr key={log.id}>
 							<td className='p-2 border'>{log.amount} сум</td>
-							<td className='p-2 border'>{log.status}</td>
 							<td className='p-2 border'>
-								{new Date(log.createdAt).toLocaleString()}
+								{log.status === 'pending'
+									? t.offense.pending
+									: log.status === 'paid'
+										? t.offense.paid
+										: t.statistics.deletedTransaction}
+							</td>
+							<td className='p-2 border'>
+								{new Date(log.createdAt).toLocaleString('ru-RU')}
 							</td>
 						</tr>
 					))}
