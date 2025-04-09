@@ -146,6 +146,11 @@ class InspectorService {
 		)
 		return response.data
 	}
+
+	async getFineLogs(fineId: string) {
+		const response = await axiosWithAuth.get(`/fine-logs/${fineId}`)
+		return response.data
+	}
 }
 
 export const inspectorService = new InspectorService()

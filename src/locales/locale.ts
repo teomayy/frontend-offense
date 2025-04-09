@@ -46,7 +46,12 @@ export const translation = {
 			cancel: 'Отмена',
 			allStatuses: 'Все штрафы',
 			allInspectors: 'Все Инспекторы',
-			notFound: 'Штрафов не найдено'
+			notFound: 'Штрафов не найдено',
+			back: 'назад',
+			historyTitle: 'История изменений',
+			dateLog: 'Дата',
+			historyNotFound: 'История не найдена',
+			logs: 'Логи'
 		},
 		'add-offense': {
 			name: 'ФИО',
@@ -192,7 +197,12 @@ export const translation = {
 			cancel: 'Chiqish',
 			allStatuses: 'Barcha jarimalar',
 			allInspectors: 'Barcha Inspectorlar',
-			notFound: 'Jarimalar topilmadi'
+			notFound: 'Jarimalar topilmadi',
+			back: 'ortga',
+			historyTitle: "O'zgarishlar tarixi",
+			dateLog: 'Sana',
+			historyNotFound: 'Tarix topilmadi',
+			logs: 'Loglar'
 		},
 		'add-offense': {
 			name: 'FIO',
@@ -261,7 +271,7 @@ export const translation = {
 			fixedAmount: 'Belgilangan summa',
 			action: 'Amallar',
 			delete: "O'chirish",
-			loading: 'Yurlanmoqda...'
+			loading: 'Yuklanmoqda...'
 		},
 		inspectors: {
 			name: 'FIO',

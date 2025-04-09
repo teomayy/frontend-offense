@@ -3,6 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { toast } from 'sonner'
@@ -27,6 +28,7 @@ export function Offense() {
 
 	const { locale } = useLanguageStore()
 	const t = translation[locale]
+	const router = useRouter()
 
 	const queryClient = useQueryClient()
 
@@ -232,6 +234,16 @@ export function Offense() {
 											{deleteFineMutation.isPending
 												? t.offense.pendingDeleting
 												: t.offense.deleting}
+										</button>
+										<button
+											onClick={() =>
+												router.push(
+													`/v1/inspector-dashboard/offense/${fine.id}`
+												)
+											}
+											className='py-1 px-3 bg-blue-500 text-white rounded-md cursor-pointer ml-2'
+										>
+											{t.offense.logs}
 										</button>
 									</td>
 								</tr>
