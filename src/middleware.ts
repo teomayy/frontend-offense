@@ -56,7 +56,8 @@ export const config = {
 // Моделируем функцию получения роли пользователя
 async function getUserRole(refreshToken: string): Promise<string | null> {
 	try {
-		const response = await fetch('http://localhost:4300/api/auth/verify-role', {
+		const apiUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
+		const response = await fetch(`${apiUrl}/auth/verify-role`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
